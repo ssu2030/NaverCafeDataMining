@@ -1,0 +1,155 @@
+<html lang="ko">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset=UTF-8>
+
+    <link href="../01. searching part/input_font.css" rel="stylesheet" type="text/css" />
+    <link href="font2.css" rel="stylesheet" type="text/css" />
+    <title>서비스 페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Nanum;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            border: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            width: 97%;
+            height: 80%;
+
+        }
+    </style>
+    <style>
+        table {
+            width: 100%;
+
+        }
+
+        div {
+            margin-top: 3px;
+            border: none;
+            height: 50%;
+
+            width: 100%;
+        }
+    </style>
+
+    <style>
+        .price_info {
+            width: 100%;
+            padding: 5px 5px;
+            margin: 10px 10px;
+
+            border: 2px solid rgb(128, 33, 33);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: NanumGothic;
+        }
+
+        th {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 6px 6px;
+            font-family: NanumGothic;
+            font-size: 5mm;
+
+
+        }
+
+        td {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 12px 12px;
+            font-size: 4mm;
+            font-weight: bold;
+
+        }
+
+        .price_info .av_price {
+            width: 32%;
+
+        }
+
+        .price_info .deal_title :hover {
+            background-color: black;
+            font: white;
+        }
+
+        /*현재 테이블 기능 동작안함*/
+
+        .price_info .low_price {
+            width: 32%;
+            align-items: center;
+        }
+
+        .price_info .high_price {
+            width: 32%;
+        }
+    </style>
+    <style>
+        .head {
+            width: 96%;
+            height: 30%;
+            border: 2px solid rgb(128, 33, 33);
+            border-radius: 50px;
+            margin: 10px 10px;
+            padding: 12px 12px;
+
+        }
+
+        .head .text {
+            
+            margin-top: 50px;
+            padding-top: 20px;
+            font-family: NanumGothic;
+            font-size: 8mm;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="head">
+        <center>
+            <font class="text">"아이폰 6" 에 대해서 51건의 데이터가 추출되었습니다</font>
+        </center>
+    </div>
+
+    <div>
+
+
+        <table class="price_info">
+            <thead>
+                <tr>
+                    <th class="av_price"> Average Price</th>
+                    <th class="low_price"> Low Price</th>
+                    <th class="high_price"> High Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <td class="data_01">235,000</td>
+                    <td class="data_02">100,000</td>
+                    <td class="data_03">430,000</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

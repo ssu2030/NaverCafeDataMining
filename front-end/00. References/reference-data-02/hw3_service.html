@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+    <meta name="author" content="">
+	<style>
+
+
+</style>
+	<style type="text/css">
+     
+    </style>
+
+    <title>약국 찾기</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="hw2_service.css" rel="stylesheet">
+	
+ </head>
+ <body>
+ 
+</div class="row">
+<div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+          <a class="navbar-brand" id="logo" href="#home"><img src="image/aa.png" /></a>
+            <a class="navbar-brand" href="#">약국 찾기</a>
+			
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+         
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="javascript:window.location.reload(true);">초기화 하기</a></li>
+			  
+              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+</div>
+
+
+ <div class="container col-lg-3" >
+<div class="jumbotron" id="jumbo">
+       
+		 <form class="form-inline" id="state_input" onsubmit="return false;">
+		 <div class="row">
+<div class="col-md-4">  
+  <div class="form-group">
+    <label for="exampleInputName2">지역(도,특별시,광역시) : </label>
+	<select class="form-control" id="stateselect">
+  <option value="서울특별시">서울특별시</option>
+  
+   <option value="인천광역시">인천광역시</option>
+  <option value="광주광역시">광주광역시</option>
+   <option value="대구광역시">대구광역시</option>
+  <option value="대전광역시">대전광역시</option>
+   <option value="부산광역시">부산광역시</option>
+  <option value="울산광역시">울산광역시</option>
+  <option value="세종특별자치시">세종특별자치시</option>
+  <option value="제주특별자치도">제주특별자치도</option>
+  <option value="경기도">경기도</option>
+  <option value="강원도">강원도</option>
+  <option value="경상남도">경상남도</option>
+  <option value="경상북도">경상북도</option>
+  <option value="충청남도">충청남도</option>
+  <option value="충청북도">충청북도</option>
+  <option value="전라남도">전라남도</option>
+  <option value="전라북도">전라북도</option>
+
+  
+ 
+</select>
+  </div>
+ <br><br>
+</div>
+</div>
+ <div class="row">
+  <div class="col-md-4">  
+  <div class="form-group">
+    <label for="exampleInputEmail2">지역(시,군,구) : </label>
+    <input type="text" class="form-control" id="input_shi" placeholder="ex) 고양시, 노원구">
+  </div>
+ 
+
+
+      </div>
+	  </div>
+	<br>
+	   <div class="row">
+	  <div class="col-md-4">
+	  <div class="form-group">
+	<label for="exampleInputEmail2">구체적인 지역(동,읍,리) : </label>
+    <input type="text" class="form-control" id="input_dong" placeholder="ex) 일산서구, 월계동">
+	</div>
+	  </div>
+	  </div>
+	  <div class="row">
+	  <div class="col-md-6">
+	  <label for="exampleInputEmail2" style="padding-top: 20px;">시간 : </label>
+<select class="form-control" id="timeselect">
+  <option value="1012">10~12</option>
+  <option value="1214">12~14</option>
+  <option value="1416">14~16</option>
+  <option value="1618">16~18</option>
+  <option value="1820">18~20</option>
+</select>
+</div>
+<br>
+<div class="col-md-6">
+
+	  <label for="exampleInputEmail2">요일</label>
+<select class="form-control" id="dayselect">
+  <option value="1">월</option>
+  <option value="2">화</option>
+  <option value="3">수</option>
+  <option value="4">목</option>
+  <option value="5">금</option>
+  <option value="6">토</option>
+  <option value="7">일</option>
+  <option value="8">공휴일</option>
+
+</select>
+</div>
+</div>
+<br><br>
+
+	   <center><button type="submit" class="btn btn-primary btn-lg" >약국 찾기</button></center>
+	  <br><br>
+	  <center><button onclick="find_list();" class="btn btn-success " >약국리스트로 빠른 이동▼</button></center>
+</form>
+</div>
+<br><br>
+</div>
+
+</div>
+
+
+ <div class="container col-lg-9" >
+       <div class="jumbotron" id="jumbo">
+<div id="datatest" align="center" style="text-align:center">
+		 <div class="row">
+		 <div id="map" class="col-lg-9"style="width:500px;height:500px;color:black;"></div>
+	           <script src="https://maps.googleapis.com/maps/api/j?skey=AIzaSyA6255QxIwEzrn6k1s1iPRlSLbZT_tjL_4&callback=initMap"
+        async defer></script>
+		<div class="panel panel-default col-lg-4">
+  <div class="panel-body" style="text-align:left;"></div>
+</div>
+      </div> 
+
+		
+		  
+	 </div> 
+</div>
+</div>
+
+ <!-- /container -->
+</div>
+</div>
+
+<div class="row">
+
+
+<div class="container">
+<div class="panel-default">
+
+<h3>결과 약국 리스트</h3>
+<table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center" id="t_head">이름</th>
+              <th class="text-center" id="t_head">주소</th>
+              <th class="text-center" id="t_head">영업시간</th>
+			  <th class="text-center" id="t_head">기타</th>
+            </tr>
+          </thead>
+          <tbody class="duty_list"></tbody>
+        </table>
+	
+		</div>
+</div>
+ </div>
+ <script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-1.12.1.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="jquery.xdomainajax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="hw2_service.js"></script>
+	<script language="JavaScript" type="text/javascript" src="bootstrap.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="xml2json.js"></script>
+   
+
+    
+
+
+    
+	  
+
+
+ </body>
+ </html>
+ 

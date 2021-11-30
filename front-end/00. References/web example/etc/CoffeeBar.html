@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+    <link rel="Stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        body { padding-top: 40px;
+        }
+    </style>
+    <script src="jquery-1.8.0.js"></script> 
+    <script src="js/bootstrap.min.js"></script>
+    <script src="sammy.js"></script>
+    <script src="underscore.js"></script>
+    <script>
+        var Rint = Rint || {};
+        Rint.Router = function (selector, routes) {
+            Rint.Router.body = selector;
+            Rint.Router.router = Sammy(selector, function () {
+                // 라우트
+                for (var controller in routes) {
+                    for (var action in routes[controller]) {
+                        this.get('#' + controller + '/' + action, routes[controller][action]);
+                    }   
+                }
+            })
+        };
+
+        Rint.Router.setController = function (name, controller) {
+            for (var action in controller) {
+                Rint.Router.router.log('#' + name + '/' + action);
+                Rint.Router.router.get('#' + name + '/' + action, controller[action]);
+            }
+        };
+
+        Rint.Router.Start = function () {
+            Rint.Router.router.run();
+        };
+
+        Rint.Router.MoveTo = function (target) {
+            location.hash = target;
+        };
+
+        Rint.Render = function (path, data) {
+            $.get(path, function (template) {
+                var output = _.template(template, data);
+                $(Rint.Router.body).html(output);
+            }); 
+        };
+
+        Rint.GetJSON = function (path, data, callback) {
+            $.getJSON(path, data, callback)
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            // 라우터를 생성합니다.
+            Rint.Router('#container');
+
+            // Home 컨트롤러를 생성합니다.
+            Rint.Router.setController('home', {
+                index: function () {
+                    // Data Process
+                    $.getJSON('rintiantta.json', function (data) {
+                        // Render the Web Page
+                        Rint.Render('index.ejs', {
+                            title: data.title,
+                            description: data.description
+                        });
+                    });
+                },
+                comic: function () {
+                    // Render the Web Page
+                    Rint.Render('index.ejs', {
+                        title: 'Comic',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac purus lorem, sit amet malesuada ante. Mauris porttitor enim pretium ipsum tristique viverra. Proin auctor nulla nec nisi adipiscing sodales. Vivamus suscipit, enim ut vehicula luctus, tortor dui congue mi, a aliquam nisi est a est. Mauris eros nisl, fermentum ac fermentum in, pretium in quam. Proin fringilla adipiscing congue. Aenean mattis, libero non vestibulum rhoncus, turpis ante gravida justo, at dapibus libero leo sit amet felis.'
+                    });
+                }
+            });
+
+            // Account 컨트롤러를 생성합니다.
+            Rint.Router.setController('account',{
+                register: function () {
+                    // Render the Web Page
+                    Rint.Render('index.ejs', {
+                        title: 'Register',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac purus lorem, sit amet malesuada ante. Mauris porttitor enim pretium ipsum tristique viverra. Proin auctor nulla nec nisi adipiscing sodales. Vivamus suscipit, enim ut vehicula luctus, tortor dui congue mi, a aliquam nisi est a est. Mauris eros nisl, fermentum ac fermentum in, pretium in quam. Proin fringilla adipiscing congue. Aenean mattis, libero non vestibulum rhoncus, turpis ante gravida justo, at dapibus libero leo sit amet felis.'
+                    });
+                },
+                login: function () {
+                    // Render the Web Page
+                    Rint.Render('index.ejs', {
+                        title: 'Login',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac purus lorem, sit amet malesuada ante. Mauris porttitor enim pretium ipsum tristique viverra. Proin auctor nulla nec nisi adipiscing sodales. Vivamus suscipit, enim ut vehicula luctus, tortor dui congue mi, a aliquam nisi est a est. Mauris eros nisl, fermentum ac fermentum in, pretium in quam. Proin fringilla adipiscing congue. Aenean mattis, libero non vestibulum rhoncus, turpis ante gravida justo, at dapibus libero leo sit amet felis.'
+                    });
+                }
+            });
+
+            // 라우터를 시작합니다.
+            Rint.Router.Start();
+            Rint.Router.MoveTo('home/index');
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">RintIanTta</a>
+                
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="#home/index">index</a></li>
+                        <li><a href="#home/comic">comic</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li><a href="#account/register">register</a></li>
+                        <li><a href="#account/login">login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main_section" class="container">
+        <div id="container">
+
+        </div>
+    </div>
+</body>
+</html>

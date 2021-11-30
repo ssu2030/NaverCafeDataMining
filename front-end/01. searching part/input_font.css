@@ -1,0 +1,7 @@
+@font-face { 
+    font-family: 'Nanum'; 
+    src: url(./Nanum.ttf) format('truetype'); 
+} 
+input[type=text]{
+    font-family: Nanum; 
+}

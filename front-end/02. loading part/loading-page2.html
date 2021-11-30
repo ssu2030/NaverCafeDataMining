@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="kr">
+	<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5; url=../03. service part/main.html">
+	<title>데이터 크롤링중</title>
+
+<style rel="stylesheet">
+*, *:before, *:after, ul, li, a, button, input, h1, h2, h3, h4, h5, h6, p, img, image, svg, path, g {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  font-family: 'Roboto';
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  list-style: none;
+}
+
+html, body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color:white;
+  font-family: 'Roboto';
+  position: relative;
+  overflow: hidden;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.circle-container {
+  position: relative;
+  width: 330px;
+  height: 330px;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+  box-sizing: content-box;
+  position: relative;
+  -webkit-filter: url("#goo");
+          filter: url("#goo");
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+}
+.circle-container > * {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px;
+}
+.circle-container > *:nth-of-type(1) {
+  -webkit-transform: rotate(0deg) translate(165px) rotate(-0deg);
+  transform: rotate(0deg) translate(165px) rotate(-0deg);
+}
+.circle-container > *:nth-of-type(2) {
+  -webkit-transform: rotate(22.5deg) translate(165px) rotate(-22.5deg);
+  transform: rotate(22.5deg) translate(165px) rotate(-22.5deg);
+}
+.circle-container > *:nth-of-type(3) {
+  -webkit-transform: rotate(45deg) translate(165px) rotate(-45deg);
+  transform: rotate(45deg) translate(165px) rotate(-45deg);
+}
+.circle-container > *:nth-of-type(4) {
+  -webkit-transform: rotate(67.5deg) translate(165px) rotate(-67.5deg);
+  transform: rotate(67.5deg) translate(165px) rotate(-67.5deg);
+}
+.circle-container > *:nth-of-type(5) {
+  -webkit-transform: rotate(90deg) translate(165px) rotate(-90deg);
+  transform: rotate(90deg) translate(165px) rotate(-90deg);
+}
+.circle-container > *:nth-of-type(6) {
+  -webkit-transform: rotate(112.5deg) translate(165px) rotate(-112.5deg);
+  transform: rotate(112.5deg) translate(165px) rotate(-112.5deg);
+}
+.circle-container > *:nth-of-type(7) {
+  -webkit-transform: rotate(135deg) translate(165px) rotate(-135deg);
+  transform: rotate(135deg) translate(165px) rotate(-135deg);
+}
+.circle-container > *:nth-of-type(8) {
+  -webkit-transform: rotate(157.5deg) translate(165px) rotate(-157.5deg);
+  transform: rotate(157.5deg) translate(165px) rotate(-157.5deg);
+}
+.circle-container > *:nth-of-type(9) {
+  -webkit-transform: rotate(180deg) translate(165px) rotate(-180deg);
+  transform: rotate(180deg) translate(165px) rotate(-180deg);
+}
+.circle-container > *:nth-of-type(10) {
+  -webkit-transform: rotate(202.5deg) translate(165px) rotate(-202.5deg);
+  transform: rotate(202.5deg) translate(165px) rotate(-202.5deg);
+}
+.circle-container > *:nth-of-type(11) {
+  -webkit-transform: rotate(225deg) translate(165px) rotate(-225deg);
+  transform: rotate(225deg) translate(165px) rotate(-225deg);
+}
+.circle-container > *:nth-of-type(12) {
+  -webkit-transform: rotate(247.5deg) translate(165px) rotate(-247.5deg);
+  transform: rotate(247.5deg) translate(165px) rotate(-247.5deg);
+}
+.circle-container > *:nth-of-type(13) {
+  -webkit-transform: rotate(270deg) translate(165px) rotate(-270deg);
+  transform: rotate(270deg) translate(165px) rotate(-270deg);
+}
+.circle-container > *:nth-of-type(14) {
+  -webkit-transform: rotate(292.5deg) translate(165px) rotate(-292.5deg);
+  transform: rotate(292.5deg) translate(165px) rotate(-292.5deg);
+}
+.circle-container > *:nth-of-type(15) {
+  -webkit-transform: rotate(315deg) translate(165px) rotate(-315deg);
+  transform: rotate(315deg) translate(165px) rotate(-315deg);
+}
+.circle-container > *:nth-of-type(16) {
+  -webkit-transform: rotate(337.5deg) translate(165px) rotate(-337.5deg);
+  transform: rotate(337.5deg) translate(165px) rotate(-337.5deg);
+}
+.circle-container li {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgb(139, 24, 24);
+  opacity: 0;
+  -webkit-transform-origin: 0% 90%;
+          transform-origin: 0% 90%;
+  -webkit-animation: appear 2s linear infinite;
+          animation: appear 2s linear infinite;
+}
+.circle-container li:nth-child(1) {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+.circle-container li:nth-child(2) {
+  -webkit-animation-delay: 0.125s;
+          animation-delay: 0.125s;
+}
+.circle-container li:nth-child(3) {
+  -webkit-animation-delay: 0.25s;
+          animation-delay: 0.25s;
+}
+.circle-container li:nth-child(4) {
+  -webkit-animation-delay: 0.375s;
+          animation-delay: 0.375s;
+}
+.circle-container li:nth-child(5) {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.circle-container li:nth-child(6) {
+  -webkit-animation-delay: 0.625s;
+          animation-delay: 0.625s;
+}
+.circle-container li:nth-child(7) {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+.circle-container li:nth-child(8) {
+  -webkit-animation-delay: 0.875s;
+          animation-delay: 0.875s;
+}
+.circle-container li:nth-child(9) {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.circle-container li:nth-child(10) {
+  -webkit-animation-delay: 1.125s;
+          animation-delay: 1.125s;
+}
+.circle-container li:nth-child(11) {
+  -webkit-animation-delay: 1.25s;
+          animation-delay: 1.25s;
+}
+.circle-container li:nth-child(12) {
+  -webkit-animation-delay: 1.375s;
+          animation-delay: 1.375s;
+}
+.circle-container li:nth-child(13) {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.circle-container li:nth-child(14) {
+  -webkit-animation-delay: 1.625s;
+          animation-delay: 1.625s;
+}
+.circle-container li:nth-child(15) {
+  -webkit-animation-delay: 1.75s;
+          animation-delay: 1.75s;
+}
+.circle-container li:nth-child(16) {
+  -webkit-animation-delay: 1.875s;
+          animation-delay: 1.875s;
+}
+.circle-container .circle-element {
+  all: default;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(92deg);
+          transform: rotateX(0deg) rotateY(0deg) rotateZ(92deg);
+  -webkit-animation: rotate2 2s linear infinite;
+          animation: rotate2 2s linear infinite;
+}
+.circle-container .circle-element .dot {
+  width: 80px;
+  height: 80px;
+  background-color: rgb(139, 24, 24);
+  border-radius: 50%;
+  position: absolute;
+  left: calc(50% - 45px);
+  top: -40px;
+}
+
+@-webkit-keyframes appear {
+  0% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    opacity: 1;
+  }
+  30% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    height: 0px;
+    width: 0px;
+  }
+  100% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    height: 0px;
+    width: 0px;
+  }
+}
+
+@keyframes appear {
+  0% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    opacity: 1;
+  }
+  30% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    height: 0px;
+    width: 0px;
+  }
+  100% {
+    -webkit-transform-origin: 0% 90%;
+            transform-origin: 0% 90%;
+    height: 0px;
+    width: 0px;
+  }
+}
+@-webkit-keyframes rotate2 {
+  100% {
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(452deg);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(452deg);
+  }
+}
+@keyframes rotate2 {
+  100% {
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(452deg);
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(452deg);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<ul class='circle-container'>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<div class="circle-element">
+		<div class="dot"></div>
+	</div>
+</ul>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+      <feBlend in="SourceGraphic" in2="goo" />
+  	</filter>
+  </defs>
+</svg>
+</body>
+</html>

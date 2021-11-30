@@ -1,0 +1,45 @@
+{
+    "crawling_data": [
+        {
+            "name": "dongho Lee",
+            "price": "300,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        },{
+            "name": "dongho Lee",
+            "price": "100,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "택배거래"
+        },{
+            "name": "dongho Lee",
+            "price": "200,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        },{
+            "name": "dongho Lee",
+            "price": "310,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        },{
+            "name": "dongho Lee",
+            "price": "330,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "택배거래"
+        },{
+            "name": "dongho Lee",
+            "price": "390,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        },{
+            "name": "dongho Lee",
+            "price": "600,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        },{
+            "name": "dongho Lee",
+            "price": "700,000",
+            "address": "-33.91721, 151.22630",
+            "option" : "직거래"
+        }
+    ]
+}

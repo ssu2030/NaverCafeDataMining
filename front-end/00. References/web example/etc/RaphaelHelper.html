@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG Path TO JSON</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="Stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        * {
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        table * {
+            margin:0; padding: 0;
+        }
+        
+        td:nth-child(1) { width: 180px; }
+        td:nth-child(2) { width: 790px; }
+
+        #main_section { padding-top: 50px; }
+        #name, #tag {
+            margin-bottom: 0;
+            width: 790px;
+            height: 15px;
+        }
+        table textarea {
+            margin:0;
+            width: 800px;
+            height: 100px;
+        }
+        table p {
+            line-height: 26px;
+            padding-top: 0;
+        }
+
+        td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        //extending the attr function to return all attrs
+        (function ($) {
+            // duck-punching to make attr() return a map
+            var _old = $.fn.attr;
+            $.fn.attr = function () {
+                var a, aLength, attributes, map;
+                if (this[0] && arguments.length === 0) {
+                    map = {};
+                    attributes = this[0].attributes;
+                    aLength = attributes.length;
+                    for (a = 0; a < aLength; a++) {
+                        map[attributes[a].name.toLowerCase()] = attributes[a].value;
+                    }
+                    return map;
+                } else {
+                    return _old.apply(this, arguments);
+                }
+            }
+        }(jQuery));
+
+        $(document).ready(function () {
+            $(".alert").css('display', 'none');
+            $('#translate_button').click(function () {
+                var rectar = true;
+                var tag = $('#tag').val() || 'path';
+                var name = $('#name').val();
+                var file = $('#svg_file').val();
+                var message = '';
+
+                if (/ /.test(name)) {
+                    message += '<li>Variable Name Error</li>'
+                    rectar = false;
+                }
+                if (name == '') {
+                    message += '<li>Empty Name Error</li>'
+                    rectar = false;
+                }
+                if (/ /.test(tag)) {
+                    message += '<li>Tag Name Error</li>'
+                    rectar = false;
+                }
+                if (!(/</.test(file))) {
+                    message += '<li>Invalid File Error</li>'
+                    rectar = false;
+                }
+                if (!rectar) {
+                    $(".alert").css('display', 'block');
+                    $('#error_message').html(message);
+                } else {
+                    $(".alert").css('display', 'none');
+                    
+                    var child = window.open();
+                    child.document.write(file);
+                    var paths = child.document.getElementsByTagName(tag);
+                    var condrasa = [];
+                    for (var i = 0; i < paths.length; i++) {
+                        var path = paths[i];
+                        condrasa.push($(path).attr());
+                    }
+                    var output = 'var ' + $('#name').val() + ' = ' + JSON.stringify(condrasa);
+                    $('#output').text(unescape(output));
+                    child.close();
+                    window.clipboardData.setData('Text', output);
+                    alert('클립보드에 복사했습니다.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#">RintIanTta</a>
+            </div>
+        </div>
+    </div>
+    <div id="main_section" class="container">
+        <div class="hero-unit">
+            <h1>SVG to JSON Converter</h1>
+        </div>
+        <div class="alert alert-block alert-error fade in">
+            <h4 class="alert-heading">ERROR!</h4>
+            <br />
+            <ul id="error_message"></ul>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <label>Variable Name</label>
+                </td>
+                <td>
+                    <input type="text" id="name" /><br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Tag(Default: path)</label>
+                </td>
+                <td>
+                    <input type="text" id="tag" /><br />
+                </td>
+            </tr>
+        
+            <tr>
+                <td>SVG File</td>
+                <td><textarea id="svg_file" cols="100" rows="20"></textarea></td>
+            </tr>
+            <tr>
+                <td>변환</td>
+                <td><button id="translate_button" class="btn">translate to SVG</button></td>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <p>결과물</p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <p id="output"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

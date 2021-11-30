@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Perspective Page</title>
+    <link rel="Stylesheet" href="css/jquery-ui-1.8.17.custom.css" />
+    <style>
+        * { margin:0; padding:0; }
+        html, body { height: 100%; overflow:hidden; font-family: Helvetica; }
+        #wrap
+        {
+            position:absolute; left:0; top:0;
+            -webkit-perspective: 1000px;
+        }
+        
+        #control 
+        {
+            margin-left:5px; margin-right:5px;
+            padding: 10px;
+        }
+        
+        #description
+        {
+            text-align:right;
+            position:absolute;
+            bottom:10px; right:10px;
+        }
+    </style>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 변수를 선언합니다.
+            var left = window.innerWidth / 2 - 50;
+            var top = window.innerHeight / 2 - 50;
+            // div 태그를 생성합니다.
+            for (var i = 0; i < 60; i++) {
+                var colorVariable = i * 3;
+                var temp = $('<div></div>').css({
+                    'position': 'absolute',
+                    'width': '100px',
+                    'height': '100px',
+                    'transform': 'translate3d(' + left + 'px, ' + top + 'px, ' + (i * 10 - 30 * 8) + 'px)',
+                    '-webkit-transform': 'translate3d(' + left + 'px, ' + top + 'px, ' + (i * 10 - 30 * 8) + 'px)',
+                    'background': 'rgb(' + colorVariable + ',' + colorVariable + ',' + colorVariable + ')'
+                }).appendTo('#wrap');
+
+                if (i * 10 - 30 * 8 == 0) {
+                    temp.css('background', 'red');
+                }
+            }
+
+            $(window).mousemove(function (event) {
+                $('#wrap').css('-webkit-perspective-origin', event.pageX + 'px ' + event.pageY + 'px');
+                $('#origin').html('Perspective Origin: ' + event.pageX + 'px ' + event.pageY + 'px');
+            });
+
+            // UI를 구성합니다.
+            $('#slider').slider({
+                value: 500,
+                min: 0,
+                max: 1000,
+                change: function (event, ui) {
+                    $('#wrap').css('webkit-perspective', ui.value);
+                    $('#output').html('Perspective Property: ' + ui.value + 'px');
+                }
+            });
+
+            var condrasa;
+            var button = $('button').button().toggle(function () {
+                antar = 0;
+                if (condrasa) { clearInterval(condrasa); }
+                condrasa = setInterval(function () {
+                    $('#wrap').css('webkit-perspective', antar);
+                    $('#output').html('Perspective Property: ' + antar + 'px');
+                    $('#slider').slider('value', antar);
+                    if (antar == 1000) { clearInterval(condrasa); button.trigger('click'); }
+
+                    antar++;
+                }, 1000 / 30);
+                $('button').button('option', 'label', 'Stop');
+            }, function () {
+                if (condrasa) { clearInterval(condrasa); }
+                $('button').button('option', 'label', 'Auto Play');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="control">
+        <div id="slider"></div>
+        <h1 id="output">Perspective Property: 500</h1>
+        <h1 id="origin">Perspective Origin: 0 0</h1>
+    </div>
+    <div id="wrap">
+
+    </div>
+    <div id="description">
+        <h1>HTML5 + CSS3 for Modern Web</h1>
+        <p>Perspective 속성과 관련된 예제입니다.</p>
+        <p>중간에 위치한 붉은 색 사각형의 Z 위치가 0입니다.</p>
+        <p>크롬에서만 작동합니다.</p>
+        <button>Auto Play</button>
+    </div>
+</body>
+</html>

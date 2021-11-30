@@ -1,0 +1,77 @@
+﻿정오표(초판)
+
+517쪽
+- 코드 B-4 2행
+<div class="navbarnavbar-default"> -> <div class="navbar navbar-default">
+
+522쪽
+- 코드 B-8 14행
+<ul class="navnavbar-nav"> -> <ul class="nav navbar-nav">
+
+- 코드 B-8 21행
+<ul class="navnavbar-navnavbar-right"> -> <ul class="nav navbar-nav navbar-right">
+
+- 코드 B-9 1행
+<div class="navbarnavbar-inverse navbar-fixed-top"> -> <div class="navbar navbar-inverse navbar-fixed-top">
+
+- 코드 B-9 14행
+<ul class="navnavbar-nav"> -> <ul class="nav navbar-nav">
+
+- 코드 B-9 19행
+<ul class="navnavbar-navnavbar-right"> -> <ul class="nav navbar-nav navbar-right">
+
+524쪽
+- 코드 B-11 -> 코드 B-10
+
+- 코드 B-10 일부 코드 띄어쓰기 수정
+1행
+<ul class="navnavbar-nav"> -> <ul class="nav navbar-nav">
+
+525쪽
+- 코드 B-12 -> 코드 B-11
+
+- 코드 B-11 일부 코드 띄어쓰기 수정
+
+2행
+<ul class="navnavbar-nav"> -> <ul class="nav navbar-nav">
+
+9행
+<ul class="navnavbar-navnavbar-right"> -> <ul class="nav navbar-nav navbar-right">
+
+526쪽
+- 코드 B-13 -> 코드 B-12
+
+- 코드 B-12 1행
+<div class="navbarnavbar-inverse navbar-fixed-top"> -> <div class="navbar navbar-inverse navbar-fixed-top">
+
+- 코드 B-12 14행
+<ul class="navnavbar-nav"> -> <ul class="nav navbar-nav">
+
+- 코드 B-12 30행
+<ul class="navnavbar-navnavbar-right"> -> <ul class="nav navbar-nav navbar-right">
+
+528쪽
+- 코드 B-14 -> 코드 B-13
+
+- 코드 B-13 2행
+<div class="navbarnavbar-inverse navbar-fixed-top"> -> <div class="navbar navbar-inverse navbar-fixed-top">
+
+531쪽
+- 코드 B-15 -> 코드 B-14
+
+- 코드 B-14 2행
+<div class="navbarnavbar-inverse navbar-fixed-top"> -> <div class="navbar navbar-inverse navbar-fixed-top">
+
+537쪽
+- 코드 B-18 -> 코드 B-19
+
+- 코드 B-19 3행
+<i class="glyphiconglyphicon-leaf"></i> -> <i class="glyphicon glyphicon-leaf"></i>
+
+537쪽
+- 코드 B-19 -> 코드 B-20
+
+
+
+
+
